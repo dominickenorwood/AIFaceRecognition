@@ -1,4 +1,6 @@
 // https://clarifai.com/developer/guide/predict#images
+// https://github.com/Clarifai/clarifai-javascript
+// https://clarifai.com/developer/account/applications
 import Clarifai from 'clarifai';
 import './index.css';
 
