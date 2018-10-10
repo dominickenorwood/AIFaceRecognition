@@ -17,3 +17,18 @@ app.models.predict(Clarifai.FACE_DETECT_MODEL, 'https://face-negotiationtheory.w
             console.log('error', error)
         }
     )
+
+/*<input id="file-upload" type="file" accept=".gif,.jpg,.jpeg,.png">
+  <script>
+    const upload = document.getElementById('file-upload');
+    upload.addEventListener('change', event => {
+      var reader = new FileReader();
+       reader.readAsDataURL(event.srcElement.files[0]);
+       reader.onload = function () {
+       var fileContent = reader.result;
+        var getIndex = fileContent.indexOf('base64');
+       console.log('base64', getIndex);
+       console.log('You uploaded a file', fileContent.slice(getIndex + 7));
+     }
+    })
+  </script>*/
