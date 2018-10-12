@@ -1,0 +1,25 @@
+.Header {
+    display: block;
+}
+
+.HeaderTitles {
+    display: block;
+}
+
+.Title {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.CountTitle {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.Controls {
+    display: block;
+}
+
+.Highlight {
+    background-color: yellow;
+}

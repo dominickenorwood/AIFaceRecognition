@@ -1,3 +1,7 @@
+import Controls from '../../components/Controls/Controls';
+import ImageHolder from '../../components/ImageHolder/ImageHolder';
+import TrimBase64 from '../../helpers/TrimBase64';
+import * as CONSTANTS from '../../helpers/ConstantVars';
 import { isPresent } from '../../handlers/errors/ErrorHandlers';
 import classes from './FaceRecognition.css';
 
@@ -11,21 +15,9 @@ class FaceRecognition {
             { name: '[Bootstrap Node]', property: config.hasOwnProperty('bootstrap') }
         ]);
 
-        console.log(config);
-
         this.config = config;
-
-        this.state = {
-            messages: [],
-            messagesUI: [],
-            pageToken: null,
-            loading: true
-        }
+        this.onChange = this.onChange.bind(this);
         this.render();
-    }
-
-    setState(newState) {
-        this.state = { ...this.state, ...newState };
     }
 
     get bootstrap(){
@@ -39,10 +31,9 @@ class FaceRecognition {
     get addCanvas(){
         const canvas = document.createElement('main');
         canvas.setAttribute('class', classes.Canvas);
-        //section.innerHTML = this.buildMessageUI(messages);
+        canvas.innerHTML = Controls() + ImageHolder();
 
         return canvas;
-        //return `<div class="${ classes.Canvas }"></div>`
     }
 
     predict(model = null, payload = null){
@@ -60,21 +51,65 @@ class FaceRecognition {
         return this.config.client.models.predict(model, payload);
     }
 
-    
+    send(bytes){
+        this.predict(this.appModel, bytes)
+            .then(
+                response => {
+                    console.log('Response', response)
+                }
+            )
+            .catch(
+                error => console.log(error);
+            )
+    }
+
+    scan(file = null) {
+        if(!file){
+            isPresent([
+                { name: '[Image File]', property: false }
+            ])
+        }
+
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = event => {
+            const image = new Image();
+            const holder = document.getElementById(CONSTANTS.IMAGE_HOLDER);
+            const imgSrc = event.target.result;
+
+            image.onload = () => {
+                holder.innerHTML = '';
+                holder.append(image);
+
+                this.send(TrimBase64(imgSrc));
+            }
+
+            image.src = imgSrc;
+        }
+    }
+
+    onChange(event) {
+        if(event.target.getAttribute('id') === CONSTANTS.IMPORT_IMG_BUTTON){
+            const inputFile = event.srcElement.files[0];
+            this.scan(inputFile);
+        }
+    }
 
     render(){
         console.log('Render Face Recognition');
         this.bootstrap.append(this.addCanvas);
+        this.bootstrap.addEventListener('change', this.onChange);
 
-        this.predict(this.appModel, 'https://face-negotiationtheory.weebly.com/uploads/4/2/1/6/4216257/1771161.jpg')
-            .then(
-                response => {
-                    console.log('Response', response)
-                },
-                error => {
-                    console.log('error', error)
-                }
-            )
+        // this.predict(this.appModel, 'https://face-negotiationtheory.weebly.com/uploads/4/2/1/6/4216257/1771161.jpg')
+        //     .then(
+        //         response => {
+        //             console.log('Response', response)
+        //         },
+        //         error => {
+        //             console.log('error', error)
+        //         }
+        //     )
     }
 }
 
