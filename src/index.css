@@ -24,3 +24,14 @@ body {
 img {
     max-width: 100%;
 }
+
+:global(#App__Backdrop){
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    background: linear-gradient(to right bottom, #14cead, #0fc16b)
+}

@@ -4,22 +4,32 @@
 
 .HeaderTitles {
     display: block;
+    text-align: center;
 }
 
 .Title {
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
 }
 
 .CountTitle {
-    font-size: 16px;
+    font-size: 1.6rem;
+    font-weight: 500;
     text-transform: uppercase;
 }
 
 .Controls {
     display: block;
+    margin: 1rem 0;
+    border: solid 1px lightblue;
+    border-radius: 2px;
+    padding: .5rem;
 }
 
 .Highlight {
-    background-color: yellow;
+    display: inline-block;
+    padding: .5rem 1rem;
+    background-color: rgba(255, 255, 0, 1);
+    border-radius: .5rem;
 }
