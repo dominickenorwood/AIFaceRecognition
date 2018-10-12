@@ -40,7 +40,6 @@ class FaceRecognition {
     removeScanningState(){
         const scanning = document.getElementsByClassName(classes.Scanning);
         scanning[0].remove();
-        console.log(scanning);
     }
 
     addScanningState(){
