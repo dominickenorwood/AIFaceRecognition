@@ -1,22 +1,16 @@
 // https://clarifai.com/developer/guide/predict#images
 // https://github.com/Clarifai/clarifai-javascript
 // https://clarifai.com/developer/account/applications
+import FaceRecognition from './containers/FaceRecognition/FaceRecognition';
 import Clarifai from 'clarifai';
+import * as CONSTANTS from './helpers/ConstantVars';
 import './index.css';
 
-const app = new Clarifai.App({
-    apiKey: '0675b1655d95447b95caaf6ac602428c'
+const ClarifaiFR = new FaceRecognition({ // eslint-disable-line no-unused-vars
+    client : new Clarifai.App({ apiKey : CONSTANTS.API_KEY }),
+    appModel : Clarifai.FACE_DETECT_MODEL,
+    bootstrap : document.getElementById(CONSTANTS.APP_ROOT)
 });
-
-app.models.predict(Clarifai.FACE_DETECT_MODEL, 'https://face-negotiationtheory.weebly.com/uploads/4/2/1/6/4216257/1771161.jpg')
-    .then(
-        response => {
-            console.log('Response', response)
-        },
-        error => {
-            console.log('error', error)
-        }
-    )
 
 /*<input id="file-upload" type="file" accept=".gif,.jpg,.jpeg,.png">
   <div id="canvas"></div>
