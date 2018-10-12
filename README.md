@@ -1,8 +1,8 @@
 # AIFaceRecognition App (prototype)
-This project sets up a simple test to work with Clarifai's face recognition AI.
+This project sets up a simple test to work with <a href="https://clarifai.com/">Clarifai's</a> face recognition AI.
 
 ## To Run
-npm install
+npm install<br>
 npm start
 
 ## Working Example
